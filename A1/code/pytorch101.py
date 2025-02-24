@@ -525,15 +525,17 @@ def batched_matrix_multiply_loop(x: Tensor, y: Tensor) -> Tensor:
     #                      TODO: Implement this function                      #
     ###########################################################################
     # Replace "pass" statement with your code
-    
-    # z = torch.mm(x[0], y[0])
-    # for i in range(1, x.size()[0]):
-    #     temp = torch.mm(x[i], y[i])
-    #     z = torch.stack((z, temp))
     sep = []
     for i in range(x.size()[0]):
         sep.append(torch.mm(x[i], y[i]))
         z = torch.stack(sep)
+
+    # Another way to implement this function
+    # z = torch.mm(x[0], y[0])
+    # for i in range(1, x.size()[0]):
+    #     temp = torch.mm(x[i], y[i])
+    #     z = torch.stack((z, temp))
+    
     ###########################################################################
     #                           END OF YOUR CODE                              #
     ###########################################################################
@@ -599,7 +601,9 @@ def normalize_columns(x: Tensor) -> Tensor:
     #                      TODO: Implement this function                     #
     ##########################################################################
     # Replace "pass" statement with your code
-    pass
+    mu = x.sum(dim = 0) / x.size()[0]
+    sigma = torch.sqrt(((x - mu) ** 2).sum(dim = 0) / (x.size()[0] - 1))
+    y = (x - mu) / sigma
     ##########################################################################
     #                            END OF YOUR CODE                            #
     ##########################################################################
@@ -646,7 +650,7 @@ def mm_on_gpu(x: Tensor, w: Tensor) -> Tensor:
     #                      TODO: Implement this function                     #
     ##########################################################################
     # Replace "pass" statement with your code
-    pass
+    y = torch.mm(x.cuda(), w.cuda()).cpu()
     ##########################################################################
     #                            END OF YOUR CODE                            #
     ##########################################################################
@@ -680,7 +684,9 @@ def challenge_mean_tensors(xs: List[Tensor], ls: Tensor) -> Tensor:
     # mean values as a tensor in `y`.                                        #
     ##########################################################################
     # Replace "pass" statement with your code
-    pass
+    from torch.nn.utils.rnn import pad_sequence
+    pad_xs = pad_sequence(xs)
+    y = pad_xs.sum(0) / (pad_xs > 0).sum(0)
     ##########################################################################
     #                            END OF YOUR CODE                            #
     ##########################################################################
@@ -720,7 +726,15 @@ def challenge_get_uniques(x: torch.Tensor) -> Tuple[Tensor, Tensor]:
     # O(N) memory.                                                           #
     ##########################################################################
     # Replace "pass" statement with your code
-    pass
+    sorted, origin = torch.sort(x, stable=True)
+    uni_select = torch.cat([torch.tensor([True], dtype=torch.bool), sorted[1:] != sorted[:-1]])
+    uni_indices = origin[uni_select]
+    indices, _ = torch.sort(uni_indices)
+    uniques = x[indices]
+
+    #   Another method using torch.unique function
+    # uniques, inverse_indices = torch.unique(x, sorted=True, return_inverse=True)
+    # indices = torch.unique(inverse_indices)
     ##########################################################################
     #                            END OF YOUR CODE                            #
     ##########################################################################
