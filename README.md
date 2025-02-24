@@ -14,5 +14,5 @@ If you find it helpful please give me a star.
 </div>
 
 ### Language
-en [English](readme/readme_eng.md)
-zh-CN [简体中文](readme/readme_cn.md)
+- en [English](README.md)
+- zh-CN [简体中文](readme/readme_cn.md)

@@ -15,5 +15,5 @@
 </div>
 
 ### 语言
-en [English](readme/readme_eng.md)
-zh-CN [简体中文](readme/readme_cn.md)
+- en [English](README.md)
+- zh-CN [简体中文](readme/readme_cn.md)
