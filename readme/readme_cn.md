@@ -12,8 +12,11 @@
   
   <h4>2025-02-24</h4>
   <p>完成 A1 里面的 Pytorch101</p>
+
+  <h4>2025-02-28</h4>
+  <p>完成 A1 里面的 kNN</p>
 </div>
 
 ### 语言
-- en [English](README.md)
+- en [English](..\README.md)
 - zh-CN [简体中文](readme/readme_cn.md)
