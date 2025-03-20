@@ -656,6 +656,35 @@ def mm_on_gpu(x: Tensor, w: Tensor) -> Tensor:
     ##########################################################################
     return y
 
+def mm_on_gpu_mps(x: Tensor, w: Tensor) -> Tensor:
+    """
+    Perform matrix multiplication on GPU.
+
+    Specifically, given two input tensors this function should:
+    (1) move each input tensor to the GPU;
+    (2) perform matrix multiplication between the GPU tensors;
+    (3) move the result back to CPU
+
+    When you move the tensor to GPU, use the "your_tensor.cuda()" operation
+
+    Args:
+        x: Tensor of shape (A, B), on CPU
+        w: Tensor of shape (B, C), on CPU
+
+    Returns:
+        y: Tensor of shape (A, C) as described above. It should not be in GPU.
+    """
+    y = None
+    ##########################################################################
+    #                      TODO: Implement this function                     #
+    ##########################################################################
+    # Replace "pass" statement with your code
+    y = torch.mm(x.to("mps"), w.to("mps")).cpu()
+    ##########################################################################
+    #                            END OF YOUR CODE                            #
+    ##########################################################################
+    return y
+
 
 def challenge_mean_tensors(xs: List[Tensor], ls: Tensor) -> Tensor:
     """

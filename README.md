@@ -14,6 +14,9 @@ If you find it helpful please give me a star.
 
   <h4>2025-02-28</h4>
   <p>Finish kNN in A1</p>
+
+  <h4>2025-03-20</h4>
+  <p>Finish Linear Classifier in A2</p>
 </div>
 
 ### Language
